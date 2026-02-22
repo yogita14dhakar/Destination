@@ -10,6 +10,21 @@ const listingSchema = new Schema({
     description: {
         type: String,
     },
+    availableSuite: {
+        type: Number,
+    },
+    guests: {
+        type: Number,
+    },
+    bed: {
+        type: String,
+    },
+    bedroom: {
+        type: String,
+    },
+    bathroom:{
+        type: String,
+    },
     image: {
         url: String,
         filename: String    
@@ -46,7 +61,8 @@ const listingSchema = new Schema({
     },
     filters: [{
         type: String,
-        enum: ["mountains", "trending", "rooms", "farms", "arctic", "camping", "castles", "iconic cities", "deserts"]
+        default: 'all',
+        enum: ["mountains", "rooms", "farms", "arctic", "camping", "castles", "iconic cities", "deserts"]
     }]
 });
 
