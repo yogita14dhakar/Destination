@@ -12,6 +12,7 @@
             <div class="card-body">
                 <p class="card-text"> 
                     <p> <%= listing.description %> </p>
+                    <p> <%= listing.guests %> guests | <%= listing.bedroom %> | <%= listing.bed %> | <%= listing.bathroom %> </p>
                     <p> &#8377; <%= listing.price.toLocaleString("en-IN") %> </p>
                     <p class="loc"> <%= listing.location %> </p>
                     <p class="country"> <%= listing.country %> </p>
