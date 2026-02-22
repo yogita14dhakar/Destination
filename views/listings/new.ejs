@@ -18,7 +18,35 @@
                     <label for="image" class="form-label"> Upload Image</label>
                     <input id="image" type="file" name="listing[image]" class="form-control" required>
                 </div>
-                
+                <div class="row">
+                    <div class="ab-3 col-md-4">
+                        <label for="availableSuite" class="form-label">Total number of rooms/suite to Air</label>
+                        <input id="availableSuite" name="listing[availableSuite]" placeholder="5" class="form-control" required>
+                        <div class="invalid-feedback">please enter valid input</div>
+                    </div>
+                    <div class="ab-3 col-md-8">
+                        <label for="guests" class="form-label">Max Guests allowed per room/suite</label>
+                        <input id="guests" name="listing[guests]" placeholder="3" class="form-control" required>
+                        <div class="invalid-feedback">please enter input</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="ab-3 col-md-4">
+                        <label for="bedroom" class="form-label">bedroom per room/suite</label>
+                        <input id="bedroom" name="listing[bedroom]" placeholder="1 bedroom" class="form-control" required>
+                        <div class="invalid-feedback">please enter valid input</div>
+                    </div>
+                    <div class="ab-3 col-md-8">
+                        <label for="bed" class="form-label">bed per room/suite</label>
+                        <input id="bed" name="listing[bed]" placeholder="1 Queen Bed" class="form-control" required>
+                        <div class="invalid-feedback">please enter input</div>
+                    </div>
+                    <div class="ab-3 col-md-8">
+                        <label for="bathroom" class="form-label">bathroom per room/suite</label>
+                        <input id="bathroom" name="listing[bathroom]" placeholder="1 Private bathroom" class="form-control" required>
+                        <div class="invalid-feedback">please enter input</div>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="ab-3 col-md-4">
                         <label for="price" class="form-label">Price</label>
@@ -46,10 +74,6 @@
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="mountains" name="listing[filters][]">
                             <label class="form-check-label" for="inlineCheckbox1">Mountain</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="trending" name="listing[filters][]">
-                            <label class="form-check-label" for="inlineCheckbox2">Trending</label>
                         </div>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="rooms" name="listing[filters][]">
