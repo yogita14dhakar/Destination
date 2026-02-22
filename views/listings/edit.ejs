@@ -25,7 +25,35 @@
                     <label for="image" class="form-label">Upload New Image</label>
                     <input name="listing[image]"  type="file" class="form-control" id="image">
                 </div>
-        
+                <div class="row">
+                    <div class="ab-3 col-md-4">
+                        <label for="availableSuite" class="form-label">Total number of rooms/suite to Air</label>
+                        <input id="availableSuite" name="listing[availableSuite]" value="<%= listing.availableSuite %>" class="form-control" required>
+                        <div class="invalid-feedback">please enter valid input</div>
+                    </div>
+                    <div class="ab-3 col-md-8">
+                        <label for="guests" class="form-label">Max Guests allowed per room/suite</label>
+                        <input id="guests" name="listing[guests]" value="<%= listing.guests %>" class="form-control" required>
+                        <div class="invalid-feedback">please enter input</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="ab-3 col-md-4">
+                        <label for="bedroom" class="form-label">bedroom per room/suite</label>
+                        <input id="bedroom" name="listing[bedroom]" value="<%= listing.bedroom %>" class="form-control" required>
+                        <div class="invalid-feedback">please enter valid input</div>
+                    </div>
+                    <div class="ab-3 col-md-8">
+                        <label for="bed" class="form-label">bed per room/suite</label>
+                        <input id="bed" name="listing[bed]" value="<%= listing.bed %>" class="form-control" required>
+                        <div class="invalid-feedback">please enter input</div>
+                    </div>
+                    <div class="ab-3 col-md-8">
+                        <label for="bathroom" class="form-label">bathroom per room/suite</label>
+                        <input id="bathroom" name="listing[bathroom]" value="<%= listing.bathroom %>" class="form-control" required>
+                        <div class="invalid-feedback">please enter input</div>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="ab-3 col-md-4">
                         <label for="price" class="form-label">Price</label>
