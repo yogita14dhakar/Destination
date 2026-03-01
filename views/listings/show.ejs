@@ -12,6 +12,7 @@
             <div class="card-body">
                 <p class="card-text"> 
                     <p> <%= listing.description %> </p>
+                    <p> <%= listing.guests %> guests | <%= listing.bedroom %> <% if(!listing.bedroom.toLowerCase().includes("bedroom")) { %> bedroom <% } %> | <%= listing.bed %> <% if(!listing.bed.toLowerCase().includes("bed")) { %> bed <% } %> | <%= listing.bathroom %> <% if(!listing.bathroom.toLowerCase().includes("bathroom")) { %> bathroom <% } %> </p>
                     <p> &#8377; <%= listing.price.toLocaleString("en-IN") %> </p>
                     <p class="loc"> <%= listing.location %> </p>
                     <p class="country"> <%= listing.country %> </p>
