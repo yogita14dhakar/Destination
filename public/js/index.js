@@ -6,7 +6,10 @@ for(let filter of filters){
         let count = -1;
         for(listing of allListing){
             count++;
-            if(!listing.filters.includes(id)){
+            if(id === 'all'){
+                document.getElementsByClassName("listing-link")[count].style.display="";
+            }
+            else if(!listing.filters.includes(id)){
                 document.getElementsByClassName("listing-link")[count].style.display="none";
             }
             else{

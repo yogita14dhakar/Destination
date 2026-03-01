@@ -163,7 +163,6 @@ body{
 .scroll-bar{
     display: flex;
     align-items: center;
-    width: 65%;
     overflow-x: scroll;
 }
 .scroll-bar::-webkit-scrollbar{
@@ -190,7 +189,6 @@ body{
 }
 .tax-toggle{
     border: 1px solid black;
-    margin-left: 3rem;
     margin-top: 1rem;
 }
 @media (max-width: 900px) {

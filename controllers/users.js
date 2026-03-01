@@ -42,3 +42,7 @@ module.exports.logout = (req, res, next) => {
         res.redirect("/");
     });
 };
+
+module.exports.booking = async(req, res) => {
+    
+}

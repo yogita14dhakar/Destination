@@ -20,7 +20,7 @@ const reviewRouter = require("./routes/review.js");
 const userRouter = require("./routes/user.js");
 
 
-
+// database connection
 const dbUrl = process.env.ATLASDB_URL;
 main().then(() => {
     console.log("connection successful");
@@ -31,6 +31,7 @@ async function main(){
     await mongoose.connect(dbUrl);
 }
 
+// ejs configuration
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use(express.urlencoded({extended: true}));
@@ -38,6 +39,7 @@ app.use(methodOverride("_method"));
 app.engine("ejs", ejsMate);
 app.use(express.static(path.join(__dirname, "/public")));
 
+// using mongodb session store
 const store = MongoStore.create({
     mongoUrl: dbUrl,
     crypto: {
@@ -45,7 +47,6 @@ const store = MongoStore.create({
     },
     touchAfter: 24 * 3600,
 });
-
 store.on("error", ()=>{
     console.log("error in MONGO SESSION store", err);
 });
@@ -61,12 +62,12 @@ const sessionOption = {
         httpOnly: true,
     }
 };
-
 app.use(session(sessionOption));
 app.use(flash());
 
 app.use(passport.initialize());
 app.use(passport.session());
+// user authentication
 passport.use(new LocalStrategy(User.authenticate()));
 
 passport.serializeUser(User.serializeUser());

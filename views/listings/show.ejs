@@ -66,22 +66,36 @@
             <hr>
             <div class="row">
                 <h4>Reviews</h4><br><br>
-                
-                <% for(review of listing.reviews){ %>
-                    <div class="card col-5 mb-3 ms-3">
-                        <div class="card-body" >
-                            <h6 class="card-title">@<%= review.author.username %></h6>
-                            <p class="starability-result" data-rating="<%= review.rating %>"></p>
-                            <p class="card-text"> <%= review.comment %> </p>
-                        </div>
-                        <% if(currUser && currUser._id.equals(review.author._id)){ %>
-                            <form class="mb-3" method="post" action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE">
-                                <button class="btn btn-sm btn-dark mt-1">Delete</button>
-                            </form>
-                        <% } %>
+                <% let count = 1 %>
+                <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <% for(review of listing.reviews){ %>
+                            <% count === 1 ? %> <div class="carousel-item active"> <% : %> <div class="carousel-item">
+                                <div class="card mb-3 ms-3">
+                                    <div class="card-body" >
+                                        <h6 class="card-title">@<%= review.author.username %></h6>
+                                        <p class="starability-result" data-rating="<%= review.rating %>"></p>
+                                        <p class="card-text"> <%= review.comment %> </p>
+                                    </div>
+                                    <% if(currUser && currUser._id.equals(review.author._id)){ %>
+                                        <form class="mb-3" method="post" action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE">
+                                            <button class="btn btn-sm btn-dark mt-1">Delete</button>
+                                        </form>
+                                    <% } %>
+                                </div>
+                            </div>
+                            <% count++ %>
+                        <% } %> 
                     </div>
-                    
-                <% } %>
+                    <button class="carousel-control-prev bg-dark" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next bg-dark" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
             </div>
         <% } %>
         <div>
