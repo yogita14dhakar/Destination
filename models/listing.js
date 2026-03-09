@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Review = require("./review");
+const Booking = require("./booking");
 const Schema = mongoose.Schema;
 
 const listingSchema = new Schema({
@@ -47,6 +48,10 @@ const listingSchema = new Schema({
     owner: {
         type: Schema.Types.ObjectId,
         ref: "User"
+    },
+    bookings:{
+        type: Schema.Types.ObjectId,
+        ref: "Booking"
     },
     geometry: {
         type: {

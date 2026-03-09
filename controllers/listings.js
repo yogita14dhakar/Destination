@@ -91,8 +91,14 @@ module.exports.updateListing = async (req, res) => {
 //to delete listing by owner
 module.exports.deleteListing = async (req, res) => {
     let {id} = req.params;
-    let deletedListing = await Listing.findByIdAndDelete(id);
-    console.log(deletedListing);
-    req.flash("success", "Listing Deleted!");
-    res.redirect("/");
+    let listing = await Listing.findById(id);
+    if(listing.bookings && listing.bookings.length > 0){
+        req.flash("error", "Cannot delete listing with active bookings!");
+        return res.redirect(`/listings/${id}`);
+    }else{
+        await Listing.findByIdAndDelete(id);
+        req.flash("success", "Listing Deleted!");
+        res.redirect("/");
+    }
+
 };

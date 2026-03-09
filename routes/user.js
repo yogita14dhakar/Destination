@@ -23,6 +23,17 @@ router
 );
 
 //logout route
-router.get("/logout", userController.logout);
+router.get("/logout", isLoggedIn, userController.logout);
+
+//user profile dashboard route
+router
+.route("/profile")
+.get(isLoggedIn, userController.renderProfile)
+
+//edit user profile route
+router
+.route("/profile/edit")
+.get(isLoggedIn, userController.renderEditProfileForm)
+.post(isLoggedIn, wrapAsync(userController.updateProfile));
 
 module.exports = router;

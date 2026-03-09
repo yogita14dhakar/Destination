@@ -43,6 +43,21 @@ module.exports.logout = (req, res, next) => {
     });
 };
 
-module.exports.booking = async(req, res) => {
-    
-}
+//to render client profile page
+module.exports.renderClientProfile = async (req, res) => {
+    let user = await User.findById(req.user._id);
+    res.render("users/profile.ejs", {user});
+};
+
+//to render client profile edit form
+module.exports.renderEditProfileForm = async (req, res) => {
+    let user = await User.findById(req.user._id);
+    res.render("users/editProfile.ejs", {user});
+};
+
+//to update client profile
+module.exports.updateProfile = async (req, res) => {
+    await User.findByIdAndUpdate(req.body.user);
+    req.flash("success", "Profile updated successfully!");
+    res.redirect("/");
+};

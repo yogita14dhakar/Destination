@@ -23,3 +23,23 @@ module.exports.reviewSchema = Joi.object({
         comment: Joi.string().required()
     }).required()
 });
+
+module.exports.bookingSchema = Joi.object({
+    booking: Joi.object({
+        checkIn: Joi.date().required(),
+        checkOut: Joi.date().required(),
+        guests: Joi.number().required().min(1),
+        user: Joi.string().required(),
+        status: Joi.string().valid("pending", "confirmed", "cancelled").default("pending")
+    }).required()
+});
+
+module.exports.paymentSchema = Joi.object({
+    payment: Joi.object({
+        amount: Joi.number().required().min(0),
+        method: Joi.string().required(),
+        status: Joi.string().valid("pending", "completed", "failed").default("pending"),
+        booking: Joi.string().required()
+    }).required()
+});
+

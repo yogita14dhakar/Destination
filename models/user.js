@@ -7,7 +7,10 @@ const userSchema = new Schema({
     email: {
         type: String,
         required: true
-    }
+    },
+    phoneNumber: {
+        type: Number,
+    },
 })
 
 userSchema.plugin(passportLocalMongoose);
