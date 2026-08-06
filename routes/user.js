@@ -28,7 +28,7 @@ router.get("/logout", isLoggedIn, userController.logout);
 //user profile dashboard route
 router
 .route("/profile")
-.get(isLoggedIn, userController.renderProfile)
+.get(isLoggedIn, userController.renderClientProfile)
 
 //edit user profile route
 router
