@@ -4,15 +4,31 @@ const mapkey = process.env.MAP_KEY;
 
 //to show all listings on one page
 module.exports.index = async (req, res) => {
+    let page = parseInt(req.query.page, 10) || 1;
+    let limit = parseInt(req.query.limit, 10) || 10;
+    let offset = (page-1)*limit;
     let country = req.query.loc;
     
-    const allListings = !country ? await Listing.find({}) : await Listing.find({ $or: [{country: { $regex: new RegExp(country, 'i') }}, {location: { $regex: new RegExp(country, 'i') }}] });
-    console.log(allListings);
+    const [allListings, totalListings] = !country ? await Promise.all([
+        Listing.find({}, { limit: limit, skip: offset}), Listing.countDocuments()
+    ]) : 
+    await Promise.all([
+        Listing.find({ $or: [{country: { $regex: new RegExp(country, 'i') }}, 
+            {location: { $regex: new RegExp(country, 'i') }}] }, 
+            { limit: limit, skip: offset}
+        ), 
+        Listing.countDocuments({ $or: [{country: { $regex: new RegExp(country, 'i') }}, 
+            {location: { $regex: new RegExp(country, 'i') }}] 
+        })
+    ]);
+    
+    let totalPages = Math.ceil(totalListings / limit);
+
     if(!allListings){
-        req.flash("error", `Listing in ${country} does not exist!`)
+        req.flash("error", `Listing does not exist!`)
         res.redirect("/");
     }
-    res.render("listings/index.ejs", {allListings});
+    res.render("listings/index.ejs", {allListings, totalListings, page, totalPages, limit});
 };
 
 //new form to create new listing
