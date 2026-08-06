@@ -10,11 +10,11 @@ module.exports.index = async (req, res) => {
     let country = req.query.loc;
     
     const [allListings, totalListings] = !country ? await Promise.all([
-        Listing.find({}, { limit: limit, skip: offset}), Listing.countDocuments()
+        Listing.find({},{}, { limit: limit, skip: offset}), Listing.countDocuments()
     ]) : 
     await Promise.all([
         Listing.find({ $or: [{country: { $regex: new RegExp(country, 'i') }}, 
-            {location: { $regex: new RegExp(country, 'i') }}] }, 
+            {location: { $regex: new RegExp(country, 'i') }}] }, {},  
             { limit: limit, skip: offset}
         ), 
         Listing.countDocuments({ $or: [{country: { $regex: new RegExp(country, 'i') }}, 
