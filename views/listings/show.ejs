@@ -68,7 +68,7 @@
             <div class="row">
                 <h4>Reviews</h4><br><br>
                 <% let count = 1 %>
-                <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="true">
+                <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="">
                     <div class="carousel-inner">
                         <% for(review of listing.reviews){ %>
                             <div class="<%= count === 1 ?'carousel-item active' : 'carousel-item' %>">
