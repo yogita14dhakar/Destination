@@ -71,7 +71,7 @@
                 <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
                         <% for(review of listing.reviews){ %>
-                            <% count === 1 ? %> <div class="carousel-item active"> <% : %> <div class="carousel-item">
+                            <div class="<%= count === 1 ?'carousel-item active' : 'carousel-item' %>">
                                 <div class="card mb-3 ms-3">
                                     <div class="card-body" >
                                         <h6 class="card-title">@<%= review.author.username %></h6>
