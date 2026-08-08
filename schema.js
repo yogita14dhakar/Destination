@@ -26,8 +26,8 @@ module.exports.reviewSchema = Joi.object({
 
 module.exports.bookingSchema = Joi.object({
     booking: Joi.object({
-        checkIn: Joi.date().required(),
-        checkOut: Joi.date().required(),
+        checkIn: Joi.date().required().max(Joi.ref('checkOut')-1),
+        checkOut: Joi.date().required().min(Joi.ref('checkIn')+1),
         guests: Joi.number().required().min(1),
         user: Joi.string().required(),
         status: Joi.string().valid("pending", "confirmed", "cancelled").default("pending")
@@ -40,6 +40,14 @@ module.exports.paymentSchema = Joi.object({
         method: Joi.string().required(),
         status: Joi.string().valid("pending", "completed", "failed").default("pending"),
         booking: Joi.string().required()
+    }).required()
+});
+
+module.exports.userSchema = Joi.object({
+    user: Joi.object({
+        username: Joi.string().required(),
+        email: Joi.string().email().required(),
+        password: Joi.string().required().min(6)
     }).required()
 });
 

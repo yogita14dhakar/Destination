@@ -5,7 +5,7 @@ const mapkey = process.env.MAP_KEY;
 //to show all listings on one page
 module.exports.index = async (req, res) => {
     let page = parseInt(req.query.page, 10) || 1;
-    let limit = parseInt(req.query.limit, 10) || 10;
+    const limit = 10;
     let offset = (page-1)*limit;
     let country = req.query.loc;
     
@@ -28,7 +28,7 @@ module.exports.index = async (req, res) => {
         req.flash("error", `Listing does not exist!`)
         res.redirect("/");
     }
-    res.render("listings/index.ejs", {allListings, totalListings, page, totalPages, limit});
+    res.render("listings/index.ejs", {allListings, totalListings, page, totalPages});
 };
 
 //new form to create new listing

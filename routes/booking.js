@@ -6,13 +6,10 @@ const router = express.Router();
 
 //root route for booking
 router
-.route("/bookings")
-.get(isLoggedIn, wrapAsync(bookingController.renderBookingForm));
-
-//create booking in database
-router 
-.route("/bookings/:listingId")  
+.route("/:listingId/bookings")
+.get(isLoggedIn, wrapAsync(bookingController.renderBookingForm))
 .post(isLoggedIn, validateBooking, wrapAsync(bookingController.createBooking));
+
 
 //edit route for booking
 router

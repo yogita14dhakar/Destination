@@ -4,11 +4,13 @@ const Listing = require("../models/listing");
 //render booking form
 module.exports.renderBookingForm = async (req, res) => {
     let user = await User.findById(req.user._id);
+    let {id} = req.params;
+    let listing = await Listing.findById(id);
     if(!user.phoneNumber){
         req.flash("error", "Please Add Your Phone Number To Book A Listing!");
         return res.render("users/editProfile.ejs");   //redirect to edit user profile page to add phone number
     }
-    res.render("bookings/newBooking.ejs");
+    res.render("bookings/newBooking.ejs", {listing});
 };
 
 //to save new booking in database
@@ -20,8 +22,10 @@ module.exports.createBooking = async (req, res) => {
     listing.bookings.push(newBooking);
     await newBooking.save();
     await listing.save(); 
+    const bookingDuration = (newBooking.checkOut - newBooking.checkIn) / (1000 * 60 * 60 * 24); //calculate booking duration in days
+    const price = listing.price * bookingDuration;
     req.flash("success", "Booking Created!");
-    res.render(`payments/payment.ejs`, {booking: newBooking}); //payment page after booking creation
+    res.render(`payments/payment.ejs`, {booking: newBooking, price}); //payment page after booking creation
 };
 
 //to show booking to owner of that booking

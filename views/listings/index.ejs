@@ -69,12 +69,12 @@
 <nav aria-label="Page navigation example">
   <ul class="pagination gap-2 justify-content-center mt-4 mb-4">
     <li class="page-item <%= page <= 1 ? 'disabled' : '' %>">
-      <a class="page-link" href="/?page=<%= page - 1 %>&limit=<%= limit %>" aria-label="Previous">
+      <a class="page-link" href="/?page=<%= page - 1 %>" aria-label="Previous">
         Previous
       </a>
     </li>
     <li class="page-item <%= page >= totalPages ? 'disabled' : '' %>">
-      <a class="page-link" href="/?page=<%= page + 1 %>&limit=<%= limit %>" aria-label="Next">
+      <a class="page-link" href="/?page=<%= page + 1 %>" aria-label="Next">
         Next
       </a>
     </li>

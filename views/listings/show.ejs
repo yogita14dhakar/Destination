@@ -28,7 +28,11 @@
                 <button class="btn btn-dark offset-5" onclick="return confirm('Delete <%= listing.title %>')">Delete</button>
             </form>
         </div>
-   <% } %>
+   <% }else { %>
+        <div class="btns mt-3 mb-4">
+            <a href="/<%= listing._id %>/bookings" class="btn btn-dark offset-3">Book Now</a>
+        </div>
+    <% } %>
    
 
     <div class="col-10 offset-1 mb-4">

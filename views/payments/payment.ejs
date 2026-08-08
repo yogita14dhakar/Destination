@@ -1,0 +1,13 @@
+<div class="row mt-3">
+    <h2>Payment Details</h2>
+    <p>Booking ID: <%= booking._id %></p>
+    <p>method: bank_transfer</p>
+    <p>Total Amount: ₹<%= price.toLocaleString("en-IN") %></p>
+    <form action="/webhook" method="POST">
+        <input type="hidden" name="event" value="payment.captured">
+        <input type="hidden" name="payload[payment][entity][amount]" value="<%= price %>">
+        <input type="hidden" name="payload[payment][entity][method]" value="bank_transfer">
+        <input type="hidden" name="payload[payment][entity][status]" value="completed">
+        <button type="submit" class="btn btn-dark">Proceed to Payment</button>
+    </form>
+</div>
